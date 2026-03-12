@@ -1,5 +1,9 @@
 name: thumbmark_android_flutter
+<<<<<<< HEAD
 description: "A Flutter plugin using thumbmark-android for generating device fingerprints on Android. This plugin provides different levels of volatility to balance between device uniqueness and stability."
+=======
+description: "A Flutter plugin using thumbmark-android for generating device fingerprints on Android. This plugin provides different levels of "volatility" to balance between device uniqueness and stability."
+>>>>>>> 7cb4d40992fcbc33571a36bcfadf2667f7ef9276
 version: 0.0.1
 repository: https://github.com/FemeyCodes/thumbmark-android-flutter
 homepage:
