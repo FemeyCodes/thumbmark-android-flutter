@@ -8,6 +8,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 
 //thumbmarkjs import
 import com.thumbmarkjs.thumbmark_android.Thumbmark
+import com.thumbmarkjs.thumbmark_android.ComponentVolatility
 
 /** ThumbmarkAndroidFlutterPlugin */
 class ThumbmarkAndroidFlutterPlugin :
@@ -15,8 +16,10 @@ class ThumbmarkAndroidFlutterPlugin :
     MethodCallHandler {
    
     private lateinit var channel: MethodChannel
+    private var context: Context? = null
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        context = flutterPluginBinding.applicationContext
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "thumbmark_android_flutter")
         channel.setMethodCallHandler(this)
     }
@@ -25,6 +28,11 @@ class ThumbmarkAndroidFlutterPlugin :
         call: MethodCall,
         result: Result
     ) {
+        val currentContext = context
+        if (currentContext == null) {
+           result.error("CONTEXT_UNAVAILABLE", "The Android context is null. Ensure the plugin is attached.", null)
+            return
+        }
         when(call.method){
             "getPlatformVersion"-> result.success("Android ${android.os.Build.VERSION.RELEASE}")
 
@@ -42,12 +50,10 @@ class ThumbmarkAndroidFlutterPlugin :
 
             else -> result.notImplemented()
         }
-       
-            
-        
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
+        context = null
     }
 }
