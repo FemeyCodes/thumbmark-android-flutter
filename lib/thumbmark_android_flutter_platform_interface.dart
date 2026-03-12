@@ -8,7 +8,8 @@ abstract class ThumbmarkAndroidFlutterPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static ThumbmarkAndroidFlutterPlatform _instance = MethodChannelThumbmarkAndroidFlutter();
+  static ThumbmarkAndroidFlutterPlatform _instance =
+      MethodChannelThumbmarkAndroidFlutter();
 
   /// The default instance of [ThumbmarkAndroidFlutterPlatform] to use.
   ///
@@ -25,5 +26,13 @@ abstract class ThumbmarkAndroidFlutterPlatform extends PlatformInterface {
 
   Future<String?> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<String?> getFingerPrintLow() {
+    throw UnimplementedError('getFingerPrintLow() has not been implemented.');
+  }
+
+  Future<String?> getFingerPrintHigh() {
+    throw UnimplementedError('getFingerPrintHigh() has not been implemented.');
   }
 }
